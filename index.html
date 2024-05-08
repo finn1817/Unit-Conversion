@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Unit Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Changed to darker gray */
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        header { /* Added header style */
+            background-color: #555; /* Darker gray for header */
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        header h3 { /* Style for owner info */
+            color: #fff;
+            text-align: center;
+            margin: 0;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header> <!-- Added header tag -->
+            <h3>Owner: Dan Finn</h3>
+        </header>
+        <h1>Advanced Unit Conversion</h1>
+        <form id="unitConversionForm">
+            <label for="fromValue">Value:</label>
+            <input type="number" id="fromValue" name="fromValue" step="any" required>
+            
+            <label for="fromUnit">From Unit:</label>
+            <select id="fromUnit" name="fromUnit" required>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="m">Meters (m)</option>
+                <option value="km">Kilometers (km)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="in">Inches (in)</option>
+                <option value="mi">Miles (mi)</option>
+                <option value="yd">Yards (yd)</option>
+            </select>
+            
+            <label for="toUnit">To Unit:</label>
+            <select id="toUnit" name="toUnit" required>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="m">Meters (m)</option>
+                <option value="km">Kilometers (km)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="in">Inches (in)</option>
+                <option value="mi">Miles (mi)</option>
+                <option value="yd">Yards (yd)</option>
+            </select>
+            
+            <input type="submit" value="Convert">
+        </form>
+        
+        <div id="result"></div>
+    </div>
+
+    <footer>
+        &copy; Dan Finn
+    </footer>
+
+    <script>
+        document.getElementById('unitConversionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get input values
+            var fromValue = parseFloat(document.getElementById('fromValue').value);
+            var fromUnit = document.getElementById('fromUnit').value;
+            var toUnit = document.getElementById('toUnit').value;
+
+            // Perform unit conversion
+            var result;
+            switch (fromUnit) {
+                case 'cm':
+                    if (toUnit === 'm') {
+                        result = fromValue / 100;
+                    } else if (toUnit === 'km') {
+                        result = fromValue / 100000;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 0.0328084;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 0.393701;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.00000621371;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 0.0109361;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'm':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 100;
+                    } else if (toUnit === 'km') {
+                        result = fromValue / 1000;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 3.28084;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 39.3701;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.000621371;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 1.09361;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'km':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 100000;
+                    } else if (toUnit === 'm') {
+                        result = fromValue * 1000;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 3280.84;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 39370.1;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.621371;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 1093.61;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'ft':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 30.48;
+                    } else if (toUnit === 'm') {
+                        result = fromValue * 0.3048;
+                    } else if (toUnit === 'km') {
+                        result = fromValue * 0.0003048;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 12;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.000189394;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 0.333333;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'in':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 2.54;
+                    } else if (toUnit === 'm') {
+                        result = fromValue * 0.0254;
+                    } else if (toUnit === 'km') {
+                        result = fromValue * 0.0000254;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 0.0833333;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.000015783;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 0.0277778;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'mi':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 160934;
+                    } else if (toUnit === 'm') {
+                        result = fromValue * 1609.34;
+                    } else if (toUnit === 'km') {
+                        result = fromValue * 1.60934;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 5280;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 63360;
+                    } else if (toUnit === 'yd') {
+                        result = fromValue * 1760;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+                case 'yd':
+                    if (toUnit === 'cm') {
+                        result = fromValue * 91.44;
+                    } else if (toUnit === 'm') {
+                        result = fromValue * 0.9144;
+                    } else if (toUnit === 'km') {
+                        result = fromValue * 0.0009144;
+                    } else if (toUnit === 'ft') {
+                        result = fromValue * 3;
+                    } else if (toUnit === 'in') {
+                        result = fromValue * 36;
+                    } else if (toUnit === 'mi') {
+                        result = fromValue * 0.000568182;
+                    } else {
+                        result = fromValue;
+                    }
+                    break;
+            }
+            // Display result
+            document.getElementById('result').innerHTML = fromValue + ' ' + fromUnit + ' equals ' + result + ' ' + toUnit;
+        });
+    </script>
+</body>
+</html>
